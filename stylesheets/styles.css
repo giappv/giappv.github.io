@@ -338,9 +338,10 @@ img.face {
 
 p.name {
     float: right;
-    width: 56%;
-    padding-top: 40px;
+    width: 65%;
+    padding-top: 35px;
 	text-transform: uppercase;
+    font-size: 25px;
 }
 
 h1.hname {
