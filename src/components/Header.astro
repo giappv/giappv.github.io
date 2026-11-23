@@ -1,4 +1,6 @@
 ---
+import { profile } from '../data/profile';
+
 // Menu order follows a visitor's questions: what is Giap doing now (Now) → what has Giap said (Talks)
 // → what has Giap built (Work) → how did Giap get here (Career) → how do I get in touch (Contact).
 // New items go where they answer their question in that journey, not at the end.
@@ -14,8 +16,8 @@ const nav = [
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href="/" aria-label="Phan Vu Giap home">
-      <span class="mark" aria-hidden="true">PG</span>
       <span class="wordmark">Phan Vu Giap</span>
+      <span class="tagline">{profile.tagline}</span>
     </a>
     <nav aria-label="Main">
       <ul>
@@ -62,23 +64,18 @@ const nav = [
     min-block-size: var(--bh-layout-header-height);
   }
   .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--bh-space-100);
+    display: grid;
+    gap: var(--bh-space-025);
+    padding-block: var(--bh-space-100);
     color: var(--bh-color-text);
     text-decoration: none;
-    font: var(--bh-font-heading-xsmall);
   }
-  .mark {
-    display: inline-grid;
-    place-items: center;
-    inline-size: var(--bh-size-control-default);
-    block-size: var(--bh-size-control-default);
-    border-radius: var(--bh-radius-control);
-    background: var(--bh-color-background-brand-bold);
-    color: var(--bh-color-text-on-brand);
-    font: var(--bh-font-label-default);
-    font-weight: var(--bh-font-weight-bold);
+  .wordmark {
+    font: var(--bh-font-heading-small);
+  }
+  .tagline {
+    font: var(--bh-font-label-small);
+    color: var(--bh-color-text-subtle);
   }
   nav {
     margin-inline-start: auto;

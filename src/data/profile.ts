@@ -6,10 +6,12 @@
 export const profile = {
   name: 'Phan Vu Giap',
   nameVi: 'Phan Vũ Giáp',
-  headline: 'Founder & CEO of Beehexa. I help businesses connect the software they run on, so their processes run on their own.',
+  // Shown under the name in the header logo on every page (PO 2026-11-23).
+  tagline: 'Software is a book written in binary code. AI is a huge, continuously updated book.',
+  headline: 'Founder & CEO of Beehexa. I help businesses automate their operations by connecting their software.',
   intro: [
     'I trained as a software engineer at Hanoi University of Technology and have been building software since 2006: Windows applications, PHP platforms and Magento stores, then the integrations between them.',
-    'In 2012 I founded Beehexa. Today we build HexaSync, which connects ERP, POS, CRM, accounting, e-commerce, marketplace and chat applications to automate business processes, for companies in Vietnam, Japan and beyond.',
+    'In 2012 I founded Beehexa. Today we are scaling HexaSync Automation Engine, which connects ERP, POS, CRM, accounting, e-commerce, e-marketplace, chat, data warehouse, DBMS, API and AI software to automate business processes for companies around the world.',
   ],
   bookCall: 'https://calendly.com/hexasync',
 };
@@ -25,11 +27,7 @@ export const now = [
     title: 'HexaSync Automation Engine',
     role: 'Innovator',
     text: 'An integration platform that connects ERP, POS, CRM, accounting, e-commerce, marketplace and chat applications to automate business processes.',
-    links: [
-      { label: 'hexasync.vn (Vietnam)', href: 'https://www.hexasync.vn/' },
-      { label: 'hexasync.jp (Japan)', href: 'https://www.hexasync.jp/' },
-      { label: 'Try the app', href: 'https://app.hexasync.com/' },
-    ],
+    links: [{ label: 'app.hexasync.com', href: 'https://app.hexasync.com/' }],
   },
   {
     title: '4P Transform',
