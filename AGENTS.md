@@ -1,7 +1,8 @@
 # AGENTS.md — phanvugiap.com
 
 Personal site of Phan Vu Giap (Phan Vũ Giáp), founder & CEO of Beehexa. English only (`lang="en"`).
-Repo `giappv/giappv.github.io`. `master` still holds the old GitHub Pages site (kept in `legacy/` on this branch).
+Repo `giappv/giappv.github.io`, default branch `main` (this site). `master` is the archived old GitHub Pages site (also in `legacy/`);
+Pages can't be disabled on a `<user>.github.io` repo, but DNS no longer points at it.
 
 ## Stack
 - Astro static, near-zero JS (theme switch only). Same setup as 4ptransform.org.
@@ -19,4 +20,5 @@ Repo `giappv/giappv.github.io`. `master` still holds the old GitHub Pages site (
 - `npm run dev`, `npm run build`
 - `npm run deploy:preview` — review copy on https://preview.phanvugiap.com (Worker `phanvugiap-com-preview`, noindex).
   Every change goes here for Product Owner review before production. Needs `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`.
-- `npx wrangler deploy` — production (phanvugiap.com + www).
+- Production (phanvugiap.com + www): push to `main` → `.github/workflows/deploy.yml`, or `npm run deploy` by hand.
+  The workflow needs repo secrets `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`.
