@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://phanvugiap.com/sitemap-index.xml

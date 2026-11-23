@@ -1,0 +1,448 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import photo from '../assets/phanvugiap.webp';
+import {
+  profile,
+  now,
+  talks,
+  integrations,
+  connectors,
+  career,
+  certifications,
+  education,
+  links,
+} from '../data/profile';
+
+const title = 'Phan Vu Giap | Founder & CEO of Beehexa, HexaSync, 4P Transform';
+const description =
+  'Phan Vu Giap (Phan Vũ Giáp) is the founder and CEO of Beehexa, innovator of the HexaSync Automation Engine and author of 4P Transform. Talks, integration work and career.';
+
+const external = (href: string) => /^https?:/.test(href);
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <Image src={photo} alt="Phan Vu Giap" class="avatar" width={150} height={150} loading="eager" />
+        <div class="hero-text">
+          <h1>{profile.name}</h1>
+          <p class="headline">{profile.headline}</p>
+          {profile.intro.map((p) => <p class="intro">{p}</p>)}
+          <div class="actions">
+            <a class="button button--primary" href={profile.bookCall} rel="noopener">Book a call</a>
+            <a class="button button--default" href={links[0].href} rel="me noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--subtle" id="now" aria-labelledby="now-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Now</span>
+          <h2 id="now-title">What I work on</h2>
+        </div>
+        <ul class="cards">
+          {
+            now.map((item) => (
+              <li class="card">
+                <h3>{item.title}</h3>
+                <p class="card-role">{item.role}</p>
+                <p>{item.text}</p>
+                <ul class="card-links">
+                  {item.links.map((l) => (
+                    <li>
+                      <a href={l.href} rel="noopener">
+                        {l.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="talks" aria-labelledby="talks-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Talks</span>
+          <h2 id="talks-title">Public speaking</h2>
+        </div>
+        <ol class="timeline">
+          {
+            talks.map((t) => (
+              <li>
+                <span class="when">{t.date}</span>
+                <span class="what">
+                  <a href={t.href} rel="noopener">
+                    {t.title}
+                  </a>
+                  {t.event && <span class="where">{t.event}</span>}
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--subtle" id="work" aria-labelledby="work-title">
+      <div class="container two-col">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Work</span>
+            <h2 id="work-title">Integration projects</h2>
+            <p>Systems connected with HexaSync for customers.</p>
+          </div>
+          <ul class="list">
+            {
+              integrations.map((i) => (
+                <li>
+                  {i.href ? (
+                    <a href={i.href} rel="noopener">
+                      <strong>{i.customer}</strong>
+                    </a>
+                  ) : (
+                    <strong>{i.customer}</strong>
+                  )}
+                  <span class="muted">{i.systems}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">HexaSync</span>
+            <h2>Connectors I work with</h2>
+            <p>A few of the applications HexaSync connects.</p>
+          </div>
+          <ul class="chips">
+            {
+              connectors.map((c) => (
+                <li>
+                  <a href={c.href} rel="noopener">
+                    {c.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="career" aria-labelledby="career-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Career</span>
+          <h2 id="career-title">Before HexaSync</h2>
+          <p>Hands-on engineering that led to building an integration platform.</p>
+        </div>
+        <div class="career">
+          {
+            career.map((g) => (
+              <div class="career-group">
+                <h3>{g.group}</h3>
+                <ol class="timeline timeline--compact">
+                  {g.items.map((i) => (
+                    <li>
+                      <span class="when">{i.years}</span>
+                      <span class="what">
+                        {i.text}
+                        {i.site &&
+                          (i.href ? (
+                            <a class="where" href={i.href} rel="noopener">
+                              {i.site}
+                            </a>
+                          ) : (
+                            <span class="where">{i.site}</span>
+                          ))}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))
+          }
+        </div>
+        <div class="facts">
+          <div>
+            <h3>Education</h3>
+            <ol class="timeline timeline--compact">
+              {
+                education.map((e) => (
+                  <li>
+                    <span class="when">{e.years}</span>
+                    <span class="what">{e.href ? <a href={e.href} rel="noopener">{e.text}</a> : e.text}</span>
+                  </li>
+                ))
+              }
+            </ol>
+          </div>
+          <div>
+            <h3>Certifications</h3>
+            <ul class="plain">
+              {certifications.map((c) => <li>{c}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--subtle" id="contact" aria-labelledby="contact-title">
+      <div class="container contact">
+        <div class="section-head">
+          <span class="eyebrow">Contact</span>
+          <h2 id="contact-title">Let's talk</h2>
+          <p>Connecting systems, automating a process, or speaking at your event: book a call or find me online.</p>
+        </div>
+        <div class="actions">
+          <a class="button button--primary" href={profile.bookCall} rel="noopener">Book a call</a>
+          {
+            links.map((l) => (
+              <a class="button button--default" href={l.href} rel="me noopener">
+                {l.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--bh-space-800);
+  }
+  @media (min-width: 48rem) {
+    .hero {
+      padding-block: var(--bh-space-1000);
+    }
+  }
+  .hero-grid {
+    display: grid;
+    gap: var(--bh-space-400);
+    align-items: start;
+  }
+  @media (min-width: 48rem) {
+    .hero-grid {
+      grid-template-columns: auto 1fr;
+      gap: var(--bh-space-600);
+    }
+  }
+  .avatar {
+    inline-size: calc(2 * var(--bh-space-800));
+    block-size: auto;
+    aspect-ratio: 1;
+    border-radius: var(--bh-radius-full);
+    border: var(--bh-border-width-accent) solid var(--bh-color-border-brand);
+  }
+  .hero-text {
+    display: grid;
+    gap: var(--bh-space-200);
+    max-width: var(--bh-layout-page-narrow);
+  }
+  h1 {
+    font: var(--bh-font-display-large);
+    text-wrap: balance;
+  }
+  .headline {
+    font: var(--bh-font-heading-medium);
+    color: var(--bh-color-text);
+    text-wrap: pretty;
+  }
+  .intro {
+    color: var(--bh-color-text-subtle);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bh-space-150);
+    margin-block-start: var(--bh-space-200);
+  }
+
+  .cards {
+    display: grid;
+    gap: var(--bh-space-300);
+  }
+  @media (min-width: 48rem) {
+    .cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bh-space-100);
+    padding: var(--bh-space-400);
+    border: var(--bh-border-width-default) solid var(--bh-color-border);
+    border-radius: var(--bh-radius-card);
+    background: var(--bh-color-surface);
+  }
+  .card h3 {
+    font: var(--bh-font-heading-small);
+  }
+  .card-role {
+    font: var(--bh-font-label-default);
+    color: var(--bh-color-text-subtle);
+  }
+  .card > p:not(.card-role) {
+    font: var(--bh-font-body-default);
+  }
+  .card-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bh-space-100) var(--bh-space-300);
+    margin-block-start: auto;
+    padding-block-start: var(--bh-space-200);
+    font: var(--bh-font-label-default);
+  }
+
+  .timeline {
+    display: grid;
+    border-block-start: var(--bh-border-width-default) solid var(--bh-color-border);
+  }
+  .timeline li {
+    display: grid;
+    gap: var(--bh-space-050) var(--bh-space-300);
+    padding-block: var(--bh-space-200);
+    border-block-end: var(--bh-border-width-default) solid var(--bh-color-border);
+  }
+  @media (min-width: 48rem) {
+    .timeline li {
+      grid-template-columns: calc(2 * var(--bh-space-1000)) 1fr;
+    }
+  }
+  .when {
+    font: var(--bh-font-label-default);
+    color: var(--bh-color-text-subtlest);
+    font-variant-numeric: tabular-nums;
+  }
+  .what {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--bh-space-050) var(--bh-space-150);
+  }
+  .where {
+    font: var(--bh-font-body-small);
+    color: var(--bh-color-text-subtle);
+  }
+  a.where {
+    color: var(--bh-color-link);
+  }
+  .timeline--compact li {
+    padding-block: var(--bh-space-150);
+    font: var(--bh-font-body-default);
+  }
+  @media (min-width: 48rem) {
+    .timeline--compact li {
+      grid-template-columns: calc(1.25 * var(--bh-space-1000)) 1fr;
+    }
+  }
+
+  .two-col {
+    display: grid;
+    gap: var(--bh-space-800);
+  }
+  @media (min-width: 64rem) {
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .two-col .section-head h2 {
+    font: var(--bh-font-heading-large);
+  }
+  .list {
+    display: grid;
+    border-block-start: var(--bh-border-width-default) solid var(--bh-color-border);
+  }
+  .list li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--bh-space-050) var(--bh-space-200);
+    padding-block: var(--bh-space-200);
+    border-block-end: var(--bh-border-width-default) solid var(--bh-color-border);
+  }
+  .muted {
+    color: var(--bh-color-text-subtle);
+    font: var(--bh-font-body-default);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bh-space-100);
+  }
+  .chips a {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--bh-size-control-default);
+    padding-inline: var(--bh-space-control-x);
+    border: var(--bh-border-width-default) solid var(--bh-color-border);
+    border-radius: var(--bh-radius-pill);
+    background: var(--bh-color-surface);
+    color: var(--bh-color-text);
+    font: var(--bh-font-label-default);
+    text-decoration: none;
+    transition: background-color var(--bh-motion-control), border-color var(--bh-motion-control);
+  }
+  .chips a:hover {
+    background: var(--bh-button-background-subtle-hover);
+    border-color: var(--bh-color-border-hover);
+  }
+
+  .career {
+    display: grid;
+    gap: var(--bh-space-600);
+  }
+  @media (min-width: 64rem) {
+    .career {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--bh-space-400);
+    }
+    .career .timeline li,
+    .facts .timeline li {
+      grid-template-columns: 1fr;
+    }
+  }
+  .career-group h3,
+  .facts h3 {
+    font: var(--bh-font-heading-xsmall);
+    margin-block-end: var(--bh-space-200);
+  }
+  .facts {
+    display: grid;
+    gap: var(--bh-space-600);
+    margin-block-start: var(--bh-space-800);
+  }
+  @media (min-width: 48rem) {
+    .facts {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .plain {
+    display: grid;
+    gap: var(--bh-space-100);
+    font: var(--bh-font-body-default);
+  }
+  .plain li {
+    padding-inline-start: var(--bh-space-200);
+    border-inline-start: var(--bh-border-width-accent) solid var(--bh-color-border-brand);
+  }
+
+  .contact .actions {
+    margin-block-start: 0;
+  }
+</style>

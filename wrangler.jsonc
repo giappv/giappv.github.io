@@ -1,0 +1,25 @@
+{
+  // Static site on Cloudflare Workers (static assets mode), same deploy model as 4ptransform.org.
+  // Deployed by .github/workflows/deploy.yml on every push to main.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "phanvugiap-com",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [
+    { "pattern": "phanvugiap.com", "custom_domain": true },
+    { "pattern": "www.phanvugiap.com", "custom_domain": true }
+  ],
+  // Review copy: `npm run deploy:preview` → Worker phanvugiap-com-preview on preview.phanvugiap.com.
+  // Every change is reviewed here before it is pushed to main. Served with X-Robots-Tag: noindex.
+  "env": {
+    "preview": {
+      "routes": [
+        { "pattern": "preview.phanvugiap.com", "custom_domain": true }
+      ]
+    }
+  }
+}

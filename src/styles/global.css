@@ -1,0 +1,225 @@
+/*
+  Every colour, space, radius, font and duration is a Beehexa Design System
+  token (--bh-*), from the installed @beehexa/design-tokens package. Do not
+  write raw hex, px or ms values here: a missing role is a gap to report to
+  the design system team, not a value to invent.
+*/
+@import '@beehexa/design-tokens/css';
+@import './fonts.css';
+
+:root {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--bh-layout-header-height) + var(--bh-space-200));
+}
+
+body {
+  margin: 0;
+  background: var(--bh-color-surface-page);
+  color: var(--bh-color-text);
+  font: var(--bh-font-body-large);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--bh-color-link);
+}
+a:hover {
+  color: var(--bh-color-link-hover);
+}
+
+:focus-visible {
+  outline: var(--bh-border-width-focused) solid var(--bh-color-border-focus);
+  outline-offset: var(--bh-state-focus-offset);
+}
+
+strong {
+  font-weight: var(--bh-font-weight-semibold);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--bh-space-200);
+  inset-block-start: calc(-1 * var(--bh-layout-header-height));
+  z-index: var(--bh-z-index-tooltip);
+  padding: var(--bh-space-100) var(--bh-space-200);
+  border-radius: var(--bh-radius-control);
+  background: var(--bh-color-background-primary);
+  color: var(--bh-color-text-inverse);
+  font: var(--bh-font-label-default);
+}
+.skip-link:focus {
+  inset-block-start: var(--bh-space-100);
+}
+
+/* Layout: Wide page (1280px content) with the design system's page margins. */
+.container {
+  width: 100%;
+  max-width: calc(var(--bh-layout-page-wide) + 2 * var(--bh-layout-page-margin-large));
+  margin-inline: auto;
+  padding-inline: var(--bh-layout-page-margin-small);
+}
+@media (min-width: 48rem) {
+  .container {
+    padding-inline: var(--bh-layout-page-margin-medium);
+  }
+}
+@media (min-width: 64rem) {
+  .container {
+    padding-inline: var(--bh-layout-page-margin-large);
+  }
+}
+
+.measure {
+  max-width: var(--bh-layout-page-narrow);
+}
+
+.section {
+  padding-block: var(--bh-space-800);
+}
+@media (min-width: 48rem) {
+  .section {
+    padding-block: var(--bh-space-1000);
+  }
+}
+.section--subtle {
+  background: var(--bh-color-surface-subtle);
+  border-block: var(--bh-border-width-default) solid var(--bh-color-border);
+}
+
+.eyebrow {
+  font: var(--bh-font-label-default);
+  color: var(--bh-color-text-subtle);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bh-space-100);
+}
+.eyebrow::before {
+  content: '';
+  inline-size: var(--bh-space-300);
+  block-size: var(--bh-border-width-accent);
+  background: var(--bh-color-background-brand-bold);
+}
+
+.section-head {
+  display: grid;
+  gap: var(--bh-space-200);
+  margin-block-end: var(--bh-space-600);
+}
+.section-head h2 {
+  font: var(--bh-font-heading-xlarge);
+  text-wrap: balance;
+}
+.section-head p {
+  color: var(--bh-color-text-subtle);
+  max-width: var(--bh-layout-page-narrow);
+}
+
+/* Buttons: Large size, Primary and Default variants (components/button/style). */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bh-space-control-gap);
+  min-block-size: var(--bh-size-control-large);
+  padding-inline: var(--bh-space-control-x-large);
+  border: var(--bh-border-width-default) solid transparent;
+  border-radius: var(--bh-radius-control);
+  font: var(--bh-font-label-default);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--bh-motion-control),
+    border-color var(--bh-motion-control);
+}
+.button svg {
+  inline-size: var(--bh-size-icon-default);
+  block-size: var(--bh-size-icon-default);
+}
+.button--primary {
+  background: var(--bh-color-background-primary);
+  color: var(--bh-color-text-inverse);
+}
+.button--primary:hover {
+  background: var(--bh-color-background-primary-hover);
+  color: var(--bh-color-text-inverse);
+}
+.button--primary:active {
+  background: var(--bh-color-background-primary-pressed);
+}
+.button--default {
+  background: var(--bh-color-surface);
+  border-color: var(--bh-color-border);
+  color: var(--bh-color-text);
+}
+.button--default:hover {
+  background: var(--bh-button-background-subtle-hover);
+  border-color: var(--bh-color-border-hover);
+  color: var(--bh-color-text);
+}
+.button--default:active {
+  background: var(--bh-button-background-subtle-pressed);
+}
+.button--subtle {
+  background: transparent;
+  color: var(--bh-color-text);
+}
+.button--subtle:hover {
+  background: var(--bh-button-background-subtle-hover);
+  color: var(--bh-color-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}

@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import interLatin from '@beehexa/design-rules/docs/public/fonts/inter-latin-opsz-wght-normal.woff2?url';
+import { profile, links, now } from '../data/profile';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image = '/og.png' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image, Astro.site);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  url: canonical.toString(),
+  mainEntity: {
+    '@type': 'Person',
+    name: profile.name,
+    alternateName: profile.nameVi,
+    url: Astro.site?.toString(),
+    image: new URL('/phanvugiap.webp', Astro.site).toString(),
+    jobTitle: 'Founder & CEO',
+    worksFor: { '@type': 'Organization', name: 'Beehexa', url: 'https://www.beehexa.com/' },
+    alumniOf: [
+      { '@type': 'CollegeOrUniversity', name: 'Hanoi University of Technology' },
+      { '@type': 'Organization', name: 'The Founder Institute', url: 'https://fi.co/' },
+    ],
+    sameAs: [...links.map((l) => l.href), ...now.flatMap((n) => n.links.map((l) => l.href)).filter((h) => h.includes('4ptransform'))],
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="profile:first_name" content="Giap" />
+    <meta property="profile:last_name" content="Phan" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Set the theme before first paint (foundations/styles/color/dark-mode). -->
+    <script is:inline>
+      (() => {
+        let theme = null;
+        try {
+          theme = localStorage.getItem('bh-theme');
+        } catch {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>

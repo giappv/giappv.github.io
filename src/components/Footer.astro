@@ -1,0 +1,37 @@
+---
+import { profile, links } from '../data/profile';
+---
+
+<footer class="site-footer">
+  <div class="container footer-bar">
+    <p>© {new Date().getFullYear()} {profile.name} ({profile.nameVi})</p>
+    <p class="footer-meta">
+      {links.slice(0, 2).map((l) => <a href={l.href} rel="me noopener">{l.label}</a>)}
+      <a href="https://www.beehexa.com/" rel="noopener">Beehexa</a>
+      <a href="https://4ptransform.org/" rel="noopener">4P Transform</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-block-start: var(--bh-border-width-default) solid var(--bh-color-border);
+    padding-block: var(--bh-space-400);
+  }
+  .footer-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--bh-space-200);
+    font: var(--bh-font-body-small);
+    color: var(--bh-color-text-subtlest);
+  }
+  .footer-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--bh-space-300);
+  }
+  .footer-bar a {
+    color: var(--bh-color-text-subtle);
+  }
+</style>
