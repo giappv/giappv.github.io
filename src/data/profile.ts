@@ -148,11 +148,15 @@ export const career = [
   },
 ];
 
-export const certifications = [
-  'Magento Certified Developer',
-  'Magento Certified Developer Plus',
-  'Magento Certified Front End Developer',
-  'Magento Certified Solution Specialist',
+export const certifications: { name: string; href?: string }[] = [
+  {
+    name: 'Google Cloud Generative AI Leader',
+    href: 'https://www.credly.com/badges/91a10698-8da2-4fe8-a01c-4d58eed6223a',
+  },
+  { name: 'Magento Certified Developer' },
+  { name: 'Magento Certified Developer Plus' },
+  { name: 'Magento Certified Front End Developer' },
+  { name: 'Magento Certified Solution Specialist' },
 ];
 
 export const education = [

@@ -191,7 +191,19 @@ const external = (href: string) => /^https?:/.test(href);
           <div>
             <h3>Certifications</h3>
             <ul class="plain">
-              {certifications.map((c) => <li>{c}</li>)}
+              {
+                certifications.map((c) => (
+                  <li>
+                    {c.href ? (
+                      <a href={c.href} rel="noopener">
+                        {c.name}
+                      </a>
+                    ) : (
+                      c.name
+                    )}
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>
