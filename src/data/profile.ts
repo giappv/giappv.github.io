@@ -10,8 +10,8 @@ export const profile = {
   tagline: 'Software is a book written in binary code. AI is a huge, continuously updated book.',
   headline: 'Founder & CEO of Beehexa. I help businesses automate their operations by connecting their software.',
   intro: [
-    'I trained as a software engineer at Hanoi University of Technology and have been building software since 2006: Windows applications, PHP platforms and Magento stores, then the integrations between them.',
-    'In 2012 I founded Beehexa. Today we are scaling HexaSync Automation Engine, which connects ERP, POS, CRM, accounting, e-commerce, e-marketplace, chat, data warehouse, DBMS, API and AI software to automate business processes for companies around the world.',
+    'I trained as a software engineer at Hanoi University of Technology and have been building software since 2003.',
+    'In 2012 I founded Beehexa as a software outsourcing company. Today we are scaling HexaSync Automation Engine, which connects ERP, POS, CRM, accounting, e-commerce, e-marketplace, chat, data warehouse, DBMS, API and AI software to automate business processes for companies around the world.',
   ],
   bookCall: 'https://calendly.com/hexasync',
 };
